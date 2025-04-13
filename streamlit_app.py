@@ -24,11 +24,10 @@ with moneyline_tab:
 with runline_tab:
     st.header("Run Line Predictions")
     try:
-        uploaded_spread = st.file_uploader("Upload mlb_spread_predictions.json", type="json")
-        if uploaded_spread:
-            spread_data = json.load(uploaded_spread)
-            spread_df = pd.DataFrame(spread_data)
-            st.dataframe(spread_df)
+        with open("mlb_runline_predictions.json") as f:
+            ml_data = json.load(f)
+        ml_df = pd.DataFrame(ml_data)
+        st.dataframe(ml_df)
     except Exception as e:
         st.warning(f"No run line predictions available: {e}")
 
